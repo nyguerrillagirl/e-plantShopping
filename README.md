@@ -1,2 +1,1 @@
-# e-plantShopping
-Coursera - Paradise Nursery Shopping Application
+# coding-project-template
