@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import PropTypes from 'prop-types';
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -274,6 +276,7 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
+                    {/* Loop through products and display them */}
 
 
                 </div>
@@ -283,5 +286,9 @@ function ProductList({ onHomeClick }) {
         </div>
     );
 }
+
+ProductList.propTypes = {
+    onHomeClick: PropTypes.func.isRequired,
+};
 
 export default ProductList;
