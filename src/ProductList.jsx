@@ -7,7 +7,7 @@ import { addItem } from "./CartSlice";
 
 function ProductList({ onHomeClick }) {
   const [showCart, setShowCart] = useState(false);
-  const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+  //const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
 
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.items);
@@ -264,6 +264,12 @@ function ProductList({ onHomeClick }) {
 
   const handleHomeClick = (e) => {
     e.preventDefault();
+    setShowCart(false); // Hide the cart when navigating to About Us
+    onHomeClick();
+  };
+
+  const handleCheckoutReturnHome  = () => {
+    setShowCart(false);
     onHomeClick();
   };
 
@@ -396,7 +402,7 @@ function ProductList({ onHomeClick }) {
           ))}
         </div>
       ) : (
-        <CartItem onContinueShopping={handleContinueShopping} />
+        <CartItem onContinueShopping={handleContinueShopping} onCheckoutReturnHome={handleCheckoutReturnHome}/>
       )}
     </div>
   );

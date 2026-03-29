@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updateQuantity } from "./CartSlice";
+import { removeItem, updateQuantity, clearCart} from "./CartSlice";
 import PropTypes from "prop-types";
 import "./CartItem.css";
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onContinueShopping, onCheckoutReturnHome }) => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
@@ -20,6 +20,14 @@ const CartItem = ({ onContinueShopping }) => {
   const handleContinueShopping = (e) => {
     e.preventDefault();
     onContinueShopping(e);
+  };
+
+  // New function named handleCheckout to invoke clearCart action and return to home page
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    alert("Checkout function not implemented yet. Clearing the cart and returning to home page.");
+    dispatch(clearCart()); // Clear the cart after checkout
+    onCheckoutReturnHome(); // Navigate back to the home page
   };
 
   const handleIncrement = (item) => {
@@ -99,7 +107,7 @@ const CartItem = ({ onContinueShopping }) => {
           Continue Shopping
         </button>
         <br />
-        <button className="get-started-button1" onClick={() => alert("Coming Soon. Checkout feature is under development.")}>Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckout(e)}>Checkout</button>
       </div>
     </div>
   );
@@ -107,6 +115,7 @@ const CartItem = ({ onContinueShopping }) => {
 
 CartItem.propTypes = {
   onContinueShopping: PropTypes.func.isRequired,
+  onCheckoutReturnHome: PropTypes.func.isRequired,
 };
 
 export default CartItem;
