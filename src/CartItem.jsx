@@ -24,8 +24,12 @@ const CartItem = ({ onContinueShopping, onCheckoutReturnHome }) => {
 
   // New function named handleCheckout to invoke clearCart action and return to home page
   const handleCheckout = (e) => {
+    if (!cart.length) {
+      alert("Your cart is empty! Please add items to checkout.");
+      return;
+    }
     e.preventDefault();
-    alert("Checkout function not implemented yet. Clearing the cart and returning to home page.");
+    alert("Coming Soon! This feature is under development.");
     dispatch(clearCart()); // Clear the cart after checkout
     onCheckoutReturnHome(); // Navigate back to the home page
   };
