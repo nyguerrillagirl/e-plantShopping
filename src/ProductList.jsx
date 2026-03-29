@@ -316,6 +316,10 @@ function ProductList({ onHomeClick }) {
     return cart.some((item) => item.name === plant.name);
   };
 
+  const getTotalCartQuantity = () => {
+    return cart.reduce((sum, item) => sum + item.quantity, 0);
+  };
+
   return (
     <div>
       <div className="navbar" style={styleObj}>
@@ -359,7 +363,7 @@ function ProductList({ onHomeClick }) {
                     stroke="#faf9f9"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="2"                    
+                    strokeWidth="2"
                     id="mainIconPathAttribute"
                   ></path>
                   {/* Display the number of items in the cart on top of the cart icon */}
@@ -371,7 +375,7 @@ function ProductList({ onHomeClick }) {
                     fill="white"
                     fontWeight="bold"
                   >
-                    {cart.length}
+                    {getTotalCartQuantity()}
                   </text>
                 </svg>
               </h1>

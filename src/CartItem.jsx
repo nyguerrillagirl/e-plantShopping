@@ -18,14 +18,22 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-    console.log("Continue shopping clicked");
     e.preventDefault();
     onContinueShopping(e);
   };
 
-  const handleIncrement = (item) => {};
+  const handleIncrement = (item) => {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+  };
 
-  const handleDecrement = (item) => {};
+  const handleDecrement = (item) => {
+    if (item.quantity > 1) {
+      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+    } else {
+      // If quantity is 1 and user clicks decrement, remove the item from the cart
+      dispatch(removeItem(item.name));
+    }
+  };
 
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
@@ -91,7 +99,7 @@ const CartItem = ({ onContinueShopping }) => {
           Continue Shopping
         </button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={() => alert("Coming Soon. Checkout feature is under development.")}>Checkout</button>
       </div>
     </div>
   );
